@@ -1,7 +1,6 @@
 ---
 - name: OpenBSD | Adjust installpath in /etc/pkg.conf
   become: yes
-  become_method: doas
   when: ansible_distribution == "OpenBSD"
   lineinfile:
     dest=/etc/pkg.conf
