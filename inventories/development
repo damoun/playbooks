@@ -1,0 +1,8 @@
+[dnsservers]
+192.168.57.2
+
+[all:vars]
+env=development
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+ansible_python_interpreter=/usr/local/bin/python2.7
