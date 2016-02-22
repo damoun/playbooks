@@ -1,6 +1,6 @@
 ---
 - hosts: all
   vars_files:
-    - "vars/{{ansible_distribution}}.yml"
+    - "group_vars/os_{{ ansible_distribution }}.yml"
   roles:
     - common
