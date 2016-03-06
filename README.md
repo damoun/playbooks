@@ -8,7 +8,7 @@ To test the playbook of a host, put the corresponding environment variable to
 '1' and run vagrant as usual.
 
 ```shell
-VAGRANT_DNS01=1 vagrant up
+VAGRANT_MASTER01=1 vagrant up
 ```
 
 [travis-img]: https://travis-ci.org/Damoun/ansible-miid.svg
