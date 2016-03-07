@@ -1,0 +1,54 @@
+{{ ansible_managed | comment(decoration=';') }}
+$ORIGIN {{ item.origin }}.
+$TTL    {{ item.soa.ttl | default('4h') }}
+
+@ IN SOA {{ item.soa.primary_ns }} {{ item.soa.email }} (
+     {{ item.soa.serial }}
+     {{ item.soa.refresh | default('4h') }}
+     {{ item.soa.retry | default('1h') }}
+     {{ item.soa.expire | default('2w') }}
+     {{ item.soa.ttl | default('4h') }}
+)
+
+{% if item.a is defined %}
+{% for host in item.a %}
+{{ host.name }} IN A {{ host.ip | ipv4 }}
+{% endfor %}
+{% endif %}
+{% if item.aaaa is defined %}
+{% for host in item.aaaa %}
+{{ host.name }} IN AAAA {{ host.ip | ipv6 }}
+{% endfor %}
+{% endif %}
+{% if item.ns is defined %}
+{% for host in item.ns %}
+@ NS {{ host.name }}
+{% endfor %}
+{% endif %}
+{% if item.mx is defined %}
+{% for host in item.mx %}
+@ MX {{ host.priority }} {{ host.name }}
+{% endfor %}
+{% endif %}
+{% if item.cname is defined %}
+{% for host in item.cname %}
+{% for alias in host.aliases %}
+{{ alias }} CNAME {{ host.name }}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if item.spf is defined %}
+{% for value in item.spf %}
+@ IN SPF "{{ value }}"
+{% endfor %}
+{% endif %}
+{% if item.txt is defined %}
+{% for value in item.txt %}
+@ IN TXT "{{ value }}"
+{% endfor %}
+{% endif %}
+{% if item.srv is defined %}
+{% for host in item.srv %}
+_{{ host.service }}._{{ host.protocol }} IN SRV {{ host.priority }} {{ host.weight }} {{ host.port }} {{ host.name }}
+{% endfor %}
+{% endif %}

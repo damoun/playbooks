@@ -1,6 +1,6 @@
 [dnsservers]
-192.168.57.2
-192.168.57.3
+192.168.57.2 nsd_ip_address=192.168.57.2
+192.168.57.3 nsd_ip_address=192.168.57.3
 
 [all:vars]
 env=development

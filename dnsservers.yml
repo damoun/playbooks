@@ -1,10 +1,8 @@
 ---
-- hosts: all
+- hosts: dnsservers
   vars_files:
     - "group_vars/os_{{ ansible_distribution }}.yml"
     - "group_vars/env_{{ env }}.yml"
     - "host_vars/{{ ansible_hostname }}.yml"
   roles:
-    - common
-
-- include: dnsservers.yml
+    - nsd

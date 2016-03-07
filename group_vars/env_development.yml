@@ -1,0 +1,24 @@
+---
+nsd_zones:
+  - origin: exemple.com
+    secret: OHoeAvtY0YiV7++18KzVQYh0OWhXkr+y0PK6l77fsDI=
+    type: "{{ nsd_type }}"
+    slaves:
+      - 192.168.57.3
+    masters:
+      - 192.168.57.2
+    soa:
+      primary_ns: dns01
+      email: root
+      serial: 2016030701
+    ns:
+      - name: dns01
+    a:
+      - name: dns01
+        ip: 192.168.57.2
+      - name: master01
+        ip: 192.168.57.2
+      - name: dns02
+        ip: 192.168.57.3
+      - name: slave01
+        ip: 192.168.57.3

@@ -1,0 +1,51 @@
+{{ ansible_managed | comment }}
+server:
+  hide-version: yes
+  ip-address: {{ nsd_ip_address }}@53
+
+remote-control:
+  control-enable: yes
+{% for zone in nsd_zones %}
+{% if zone.secret is defined %}
+
+key:
+  name: "{{ zone.origin }}-key"
+  algorithm: {{ zone.secret_algorithm | default('hmac-sha256') }}
+  secret: "{{ zone.secret }}"
+{% endif %}
+{% endfor %}
+{% for zone in nsd_zones %}
+
+zone:
+  name: "{{ zone.origin }}"
+  zonefile: "{{ zone.origin }}.zone"
+{% if zone.outgoing_interface is defined %}
+  outgoing-interface: {{ zone.outgoing_interface }}
+{% endif %}
+{% if zone.type == "master" %}
+{% if zone.slaves is defined %}
+{% for slave in zone.slaves %}
+{% if zone.secret is defined %}
+  notify: {{ slave }} {{ zone.origin }}-key
+  provide-xfr: {{ slave }} {{ zone.origin }}-key
+{% else %}
+  notify: {{ slave }} NOKEY
+  provide-xfr: {{ slave }} NOKEY
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if zone.type == "slave" %}
+{% if zone.masters is defined %}
+{% for master in zone.masters %}
+{% if zone.secret is defined %}
+  allow-notify: {{ master }} {{ zone.origin }}-key
+  request-xfr: AXFR {{ master }}@53 {{ zone.origin }}-key
+{% else %}
+  allow-notify: {{ master }} NOKEY
+  request-xfr: AXFR {{ master }}@53 NOKEY
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}

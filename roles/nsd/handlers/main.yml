@@ -1,0 +1,7 @@
+---
+- name: Restart nsd
+  become: yes
+  become_method: doas
+  service:
+    name=nsd
+    state=restarted
