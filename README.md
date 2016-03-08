@@ -11,6 +11,7 @@ To test the playbook of a host, put the corresponding environment variable to
 export VAGRANT_MASTER01=1
 export VAGRANT_SLAVE01=1
 vagrant up
+ansible-playbook -i inventories/development site.yml
 ```
 
 [travis-img]: https://travis-ci.org/Damoun/ansible-miid.svg

@@ -14,12 +14,7 @@ Vagrant.configure(2) do |config|
       master01.ssh.sudo_command = "doas %c"
       master01.vm.network "private_network", ip: "192.168.57.2"
       master01.vm.provision "shell", inline: $openbsd_install_python
-      master01.vm.provision "ansible", run: "always" do |ansible|
-        ansible.verbose = "vv"
-        ansible.inventory_path = "inventories/development"
-        ansible.limit = 'all'
-        ansible.playbook = "site.yml"
-      end
+      master01.ssh.insert_key = false
     end
   end
 
@@ -30,12 +25,7 @@ Vagrant.configure(2) do |config|
       slave01.ssh.sudo_command = "doas %c"
       slave01.vm.network "private_network", ip: "192.168.57.3"
       slave01.vm.provision "shell", inline: $openbsd_install_python
-      slave01.vm.provision "ansible", run: "always" do |ansible|
-        ansible.verbose = "vv"
-        ansible.inventory_path = "inventories/development"
-        ansible.limit = 'all'
-        ansible.playbook = "site.yml"
-      end
+      slave01.ssh.insert_key = false
     end
   end
 
