@@ -55,5 +55,3 @@ smtpd_pkis:
       -----END DH PARAMETERS-----
 smtpd_domains:
   - exemple.com
-smtpd_mda:
-  program: "/usr/local/libexec/dovecot/deliver -f %{sender} -a %{rcpt} -d %{dest:lowercase|strip}"

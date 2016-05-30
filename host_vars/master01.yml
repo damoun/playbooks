@@ -1,2 +1,4 @@
 ---
 nsd_type: master
+smtpd_mda:
+  program: "/usr/local/libexec/dovecot/deliver -f %{sender} -a %{rcpt} -d %{dest:lowercase|strip}"
