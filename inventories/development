@@ -2,6 +2,9 @@
 192.168.57.2 nsd_ip_address=192.168.57.2
 192.168.57.3 nsd_ip_address=192.168.57.3
 
+[smtpservers]
+192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "mx1.exemple.com"}]'
+
 [all:vars]
 env=development
 ansible_ssh_user=vagrant

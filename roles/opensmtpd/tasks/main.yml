@@ -1,0 +1,62 @@
+---
+  - name: Install PKI Certificate
+    become: yes
+    copy:
+      dest: "/etc/ssl/{{ item.name }}.crt"
+      content: "{{ item.certificate }}"
+      mode: 0640
+      owner: root
+      group: "{{ smtpd_group }}"
+      validate: openssl x509 -in %s -text -noout
+    with_items: "{{ smtpd_pkis|default([]) }}"
+    when: item.certificate is defined
+    notify:
+     - restart smtpd
+
+
+  - name: Install PKI Key
+    become: yes
+    copy:
+      dest: "/etc/ssl/private/{{ item.name }}.key"
+      content: "{{ item.key }}"
+      mode: 0640
+      owner: root
+      group: "{{ smtpd_group }}"
+      validate: openssl rsa -in %s -check -text -noout
+    with_items: "{{ smtpd_pkis|default([]) }}"
+    when: item.key is defined
+    notify:
+     - restart smtpd
+
+  - name: Install PKI DH
+    become: yes
+    copy:
+      dest: "/etc/ssl/{{ item.name }}.dh"
+      content: "{{ item.dh }}"
+      mode: 0640
+      owner: root
+      group: "{{ smtpd_group }}"
+      validate: openssl dhparam -in %s -check -text -noout
+    with_items: "{{ smtpd_pkis|default([]) }}"
+    when: item.dh is defined
+    notify:
+     - restart smtpd
+
+  - name: Create config file
+    become: yes
+    template:
+      src: smtpd.conf.j2
+      dest: /etc/mail/smtpd.conf
+      owner: root
+      group: "{{ smtpd_group }}"
+      mode: 0640
+      #validate: smtpd -n -f %s
+    notify:
+     - restart smtpd
+
+  - name: Enable OpenSMTPD on boot and start it
+    become: yes
+    service:
+      name: smtpd
+      state: started
+      enabled: yes
