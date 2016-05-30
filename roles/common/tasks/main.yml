@@ -4,7 +4,7 @@
     when: ansible_distribution == "OpenBSD"
     lineinfile:
       dest: /etc/pkg.conf
-      line: "installpath = http://{{openbsd_mirror}}/pub/OpenBSD/{{ansible_distribution_release}}/packages/{{ansible_machine}}/"
+      line: "installpath = http://{{openbsd_mirror}}/pub/OpenBSD/%c/packages/%a/"
       regexp: '^'
       state: present
       insertafter: EOF
