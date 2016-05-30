@@ -3,8 +3,8 @@
 192.168.57.3 nsd_ip_address=192.168.57.3
 
 [smtpservers]
-192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "mx1.exemple.com"}]'
-192.168.57.3 smtpd_listens='[{"interface": "em1", "hostname": "mx2.exemple.com"}]' smtpd_relay='{"backup": "mx2.exemple.com"}'
+192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in01.{{ root_domain }}"}]'
+192.168.57.3 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in02.{{ root_domain }}"}]' smtpd_relay='{"backup": "smtp-in02.{{ root_domain }}"}'
 
 [all:vars]
 env=development

@@ -1,6 +1,7 @@
 ---
+root_domain: exemple.com
 nsd_zones:
-  - origin: exemple.com
+  - origin: "{{ root_domain }}"
     secret: OHoeAvtY0YiV7++18KzVQYh0OWhXkr+y0PK6l77fsDI=
     type: "{{ nsd_type }}"
     slaves:
@@ -22,8 +23,7 @@ nsd_zones:
         ip: 192.168.57.3
       - name: slave01
         ip: 192.168.57.3
-smtpd_pkis:
-  - name: mx1.exemple.com
+smtp_in01:
     certificate: |
       -----BEGIN CERTIFICATE-----
       MIIB5TCCAY+gAwIBAgIJANYY4yqyCuKWMA0GCSqGSIb3DQEBCwUAME4xCzAJBgNV
@@ -54,4 +54,4 @@ smtpd_pkis:
       cx6lx3gR2WeLh6VGaeDf/vJzrVQLAgEC
       -----END DH PARAMETERS-----
 smtpd_domains:
-  - exemple.com
+  - "{{ root_domain }}"
