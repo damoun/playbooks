@@ -50,7 +50,7 @@
       owner: root
       group: "{{ smtpd_group }}"
       mode: 0640
-      #validate: smtpd -n -f %s
+      validate: smtpd -n -f %s
     notify:
      - restart smtpd
 
