@@ -4,6 +4,7 @@
 
 [smtpservers]
 192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "mx1.exemple.com"}]'
+192.168.57.3 smtpd_listens='[{"interface": "em1", "hostname": "mx2.exemple.com"}]' smtpd_relay='{"backup": "mx2.exemple.com"}'
 
 [all:vars]
 env=development

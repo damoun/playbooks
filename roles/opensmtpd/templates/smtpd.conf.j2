@@ -30,10 +30,11 @@ table aliases file:/etc/mail/aliases
 {% if smtpd_domains is defined %}table domains {{"{"}} {{ smtpd_domains | join(", ") }} {{"}"}}{% endif %}
 
 {% if smtpd_domains is defined %}
-accept from any for domain <domains> alias <aliases> \
-  {% if smtpd_mda is defined %}deliver to mda "{{ smtpd_mda.program }}"{% endif %}
-  {% if smtpd_mbox is defined %}deliver to mbox{% endif %}
-  {% if smtpd_maildir is defined %}deliver to maildir{% if smtpd_maildir.path is defined %} {{ smtpd_maildir.path }}{% endif %}{% endif %}
+accept from any for domain <domains> \
+  {% if smtpd_mda is defined %}alias <aliases> deliver to mda "{{ smtpd_mda.program }}"{% endif %}
+  {% if smtpd_mbox is defined %}alias <aliases> deliver to mbox{% endif %}
+  {% if smtpd_maildir is defined %}alias <aliases> deliver to maildir{% if smtpd_maildir.path is defined %} {{ smtpd_maildir.path }}{% endif %}{% endif %}
+  {% if smtpd_relay is defined %}relay{% if smtpd_relay.backup is defined %} backup {{ smtpd_relay.backup }}{% endif %}{% endif %}
 {% endif %}
 
 accept for local alias <aliases> deliver to mbox
