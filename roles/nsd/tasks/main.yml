@@ -2,24 +2,24 @@
   - name: Create config file
     become: yes
     template:
-      src=nsd.conf.j2
-      dest={{ nsd_configdir }}/etc/nsd.conf
-      owner=root
-      group={{ nsd_group }}
-      mode=0640
-      validate="nsd-checkconf %s"
+      src: nsd.conf.j2
+      dest: "{{ nsd_configdir }}/etc/nsd.conf"
+      owner: root
+      group: "{{ nsd_group }}"
+      mode: 0640
+      validate: nsd-checkconf %s
     notify:
      - restart nsd
 
   - name: Create zones file
     become: yes
     template:
-      src=zone.j2
-      dest={{ nsd_configdir }}/zones/{{ item.origin }}.zone
-      owner=root
-      group={{ nsd_group }}
-      mode=0640
-      validate="nsd-checkzone {{ item.origin }} %s"
+      src: zone.j2
+      dest: "{{ nsd_configdir }}/zones/{{ item.origin }}.zone"
+      owner: root
+      group: "{{ nsd_group }}"
+      mode: 0640
+      validate: "nsd-checkzone {{ item.origin }} %s"
     with_items: "{{ nsd_zones }}"
     notify:
      - restart nsd
@@ -27,6 +27,6 @@
   - name: Enable NSD on boot and start it
     become: yes
     service:
-      name=nsd
-      state=started
-      enabled=yes
+      name: nsd
+      state: started
+      enabled: yes

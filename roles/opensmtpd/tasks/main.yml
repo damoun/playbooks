@@ -8,11 +8,10 @@
       owner: root
       group: "{{ smtpd_group }}"
       validate: openssl x509 -in %s -text -noout
-    with_items: "{{ smtpd_pkis|default([]) }}"
+    with_items: "{{ smtpd_pkis | default([]) }}"
     when: item.certificate is defined
     notify:
      - restart smtpd
-
 
   - name: Install PKI Key
     become: yes
@@ -23,7 +22,7 @@
       owner: root
       group: "{{ smtpd_group }}"
       validate: openssl rsa -in %s -check -text -noout
-    with_items: "{{ smtpd_pkis|default([]) }}"
+    with_items: "{{ smtpd_pkis | default([]) }}"
     when: item.key is defined
     notify:
      - restart smtpd
@@ -37,7 +36,7 @@
       owner: root
       group: "{{ smtpd_group }}"
       validate: openssl dhparam -in %s -check -text -noout
-    with_items: "{{ smtpd_pkis|default([]) }}"
+    with_items: "{{ smtpd_pkis | default([]) }}"
     when: item.dh is defined
     notify:
      - restart smtpd

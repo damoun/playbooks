@@ -2,5 +2,5 @@
 - name: restart smtpd
   become: yes
   service:
-    name=smtpd
-    state=restarted
+    name: smtpd
+    state: restarted

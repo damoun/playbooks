@@ -3,5 +3,5 @@
   become: yes
   become_method: doas
   service:
-    name=nsd
-    state=restarted
+    name: nsd
+    state: restarted
