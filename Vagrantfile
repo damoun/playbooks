@@ -1,7 +1,8 @@
 Vagrant.require_version ">= 1.7.0"
 
 $openbsd_install_python = <<SCRIPT
-export "PKG_PATH=http://mirror.dalenys.com/pub/OpenBSD/5.9/packages/amd64/"
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+export "PKG_PATH=http://mirror.dalenys.com/pub/OpenBSD/$(uname -r)/packages/$(uname -p)/"
 pkg_add -i python-2.7.11
 echo "permit nopass keepenv vagrant as root" > /etc/doas.conf
 SCRIPT
