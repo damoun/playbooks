@@ -1,0 +1,18 @@
+---
+  - name: Configure ntp
+    become: yes
+    template:
+      src: ntp.conf.j2
+      owner: root
+      group: "{{ ntp_group }}"
+      mode: 0640
+      dest: /etc/ntp.conf
+    notify:
+      - restart ntp
+
+  - name: Ensure ntpd is running and enabled
+    become: yes
+    service:
+      name: ntpd
+      state: started
+      enabled: yes

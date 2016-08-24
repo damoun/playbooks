@@ -3,3 +3,4 @@ ansible_become_method: doas
 nsd_group: _nsd
 nsd_configdir: /var/nsd
 smtpd_group: _smtpd
+ntp_group: _ntp

@@ -9,3 +9,5 @@
       state: present
       insertafter: EOF
       create: yes
+
+  - include: ntp.yml
