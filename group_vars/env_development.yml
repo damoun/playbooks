@@ -9,19 +9,15 @@ nsd_zones:
     masters:
       - 192.168.57.2
     soa:
-      primary_ns: dns01
+      primary_ns: ns01
       email: root
       serial: 2016030701
     ns:
-      - name: dns01
+      - name: ns01
     a:
-      - name: dns01
+      - name: ns01
         ip: 192.168.57.2
-      - name: master01
-        ip: 192.168.57.2
-      - name: dns02
-        ip: 192.168.57.3
-      - name: slave01
+      - name: ns02
         ip: 192.168.57.3
 smtp_in01:
     certificate: |

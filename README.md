@@ -8,8 +8,8 @@ To test the playbook of a host, put the corresponding environment variable to
 '1' and run vagrant as usual.
 
 ```shell
-export VAGRANT_MASTER01=1
-export VAGRANT_SLAVE01=1
+export VAGRANT_NS01=1
+export VAGRANT_NS02=1
 vagrant up
 ansible-playbook -i inventories/development site.yml
 ```
