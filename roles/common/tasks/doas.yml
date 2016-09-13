@@ -1,0 +1,9 @@
+---
+  - name: Configure doas
+    become: yes
+    template:
+      src: doas.conf.j2
+      owner: root
+      group: wheel
+      mode: 0640
+      dest: /etc/doas.conf
