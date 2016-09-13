@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 {% for server in ntp_servers %}
 server {{ server }}
 {% endfor %}
