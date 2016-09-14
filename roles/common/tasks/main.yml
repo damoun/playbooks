@@ -10,5 +10,4 @@
       insertafter: EOF
       create: yes
 
-  - include: ntp.yml
   - include: users.yml
