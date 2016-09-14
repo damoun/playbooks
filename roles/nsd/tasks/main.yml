@@ -15,7 +15,7 @@
     become: yes
     template:
       src: zone.j2
-      dest: "{{ nsd_configdir }}/zones/{{ item.origin }}.zone"
+      dest: "{{ nsd_configdir }}/zones/{{nsd_type}}/{{ item.origin }}.zone"
       owner: root
       group: "{{ nsd_group }}"
       mode: 0640

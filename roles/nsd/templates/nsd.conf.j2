@@ -18,7 +18,7 @@ key:
 
 zone:
   name: "{{ zone.origin }}"
-  zonefile: "{{ zone.origin }}.zone"
+  zonefile: "{{ nsd_type }}/{{ zone.origin }}.zone"
 {% if zone.outgoing_interface is defined %}
   outgoing-interface: {{ zone.outgoing_interface }}
 {% endif %}
