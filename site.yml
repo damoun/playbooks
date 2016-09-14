@@ -6,6 +6,7 @@
     - "host_vars/{{ ansible_hostname }}.yml"
   roles:
     - common
+    - aliases
 
 - include: dnsservers.yml
 - include: smtpservers.yml
