@@ -11,5 +11,4 @@
       create: yes
 
   - include: ntp.yml
-  - include: doas.yml
   - include: users.yml
