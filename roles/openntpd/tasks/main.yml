@@ -4,7 +4,7 @@
     template:
       src: ntpd.conf.j2
       owner: root
-      group: "{{ ntp_group }}"
+      group: wheel
       mode: 0640
       dest: /etc/ntpd.conf
     notify:
