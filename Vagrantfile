@@ -31,4 +31,16 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  if ENV['VAGRANT_VPN01'] == '1'
+    config.vm.define "vpn01" do |vpn01|
+      vpn01.vm.hostname = "vpn01"
+      vpn01.vm.box = "trombik/ansible-openbsd-6.0-amd64"
+      #vpn01.ssh.sudo_command = "doas %c"
+      vpn01.vm.network "forwarded_port", guest: 22, host: 2203
+      vpn01.vm.network "forwarded_port", guest: 1194, host: 1194
+      vpn01.vm.provision "shell", inline: $openbsd_install_python
+      vpn01.ssh.insert_key = false
+    end
+  end
+
 end

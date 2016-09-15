@@ -10,6 +10,7 @@ To test the playbook of a host, put the corresponding environment variable to
 ```shell
 export VAGRANT_NS01=1
 export VAGRANT_NS02=1
+export VAGRANT_VPN01=1
 vagrant up
 ansible-playbook -i inventories/development site.yml
 ```
