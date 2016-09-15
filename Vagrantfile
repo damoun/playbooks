@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
       ns01.vm.hostname = "ns01"
       ns01.vm.box = "trombik/ansible-openbsd-6.0-amd64"
       #ns01.ssh.sudo_command = "doas %c"
-      ns01.vm.network "private_network", ip: "192.168.57.2"
+      ns01.vm.network "forwarded_port", guest: 22, host: 2201
       ns01.vm.provision "shell", inline: $openbsd_install_python
       ns01.ssh.insert_key = false
     end
@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
       ns02.vm.hostname = "ns02"
       ns02.vm.box = "trombik/ansible-openbsd-6.0-amd64"
       #ns02.ssh.sudo_command = "doas %c"
-      ns02.vm.network "private_network", ip: "192.168.57.3"
+      ns02.vm.network "forwarded_port", guest: 22, host: 2202
       ns02.vm.provision "shell", inline: $openbsd_install_python
       ns02.ssh.insert_key = false
     end

@@ -1,6 +1,6 @@
 [dnsservers]
-192.168.57.2
-192.168.57.3
+ns01 ansible_ssh_port=2201 ansible_ssh_host=127.0.0.1
+ns02 ansible_ssh_port=2202 ansible_ssh_host=127.0.0.1
 
 [smtpservers]
 192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in01.{{ root_domain }}"}]'
