@@ -1,0 +1,16 @@
+---
+  openvpn_configdir: /etc/openvpn
+  openvpn_host: "{{ inventory_hostname }}"
+  openvpn_port: 1194
+  openvpn_proto: udp
+  openvpn_dev: tun
+  openvpn_server: 10.8.0.0 255.255.255.0
+  openvpn_max_clients: 10
+  openvpn_keepalive: "10 120"
+  openvpn_cipher: AES-256-CBC
+  openvpn_status: openvpn-status.log
+  openvpn_verb: 5
+  openvpn_user: _openvpn
+  openvpn_group: _openvpn
+  openvpn_key_size: 2048
+  openvpn_server_options: []

@@ -2,6 +2,9 @@
 ns01 ansible_ssh_port=2201 ansible_ssh_host=127.0.0.1
 ns02 ansible_ssh_port=2202 ansible_ssh_host=127.0.0.1
 
+[vpnservers]
+vpn01 ansible_ssh_port=2203 ansible_ssh_host=127.0.0.1
+
 [smtpservers]
 192.168.57.2 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in01.{{ root_domain }}"}]'
 192.168.57.3 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in02.{{ root_domain }}"}]' smtpd_relay='{"backup": "smtp-in02.{{ root_domain }}"}'

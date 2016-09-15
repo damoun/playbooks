@@ -56,3 +56,193 @@ smtp_in01:
       -----END DH PARAMETERS-----
 smtpd_domains:
   - "{{ root_domain }}"
+openvpn_ca: |
+  -----BEGIN CERTIFICATE-----
+  MIIFEjCCA/qgAwIBAgIJAI4a8ebVt9c5MA0GCSqGSIb3DQEBCwUAMIG2MQswCQYD
+  VQQGEwJVUzELMAkGA1UECBMCQ0ExFTATBgNVBAcTDFNhbkZyYW5jaXNjbzEVMBMG
+  A1UEChMMRm9ydC1GdW5zdG9uMR0wGwYDVQQLExRNeU9yZ2FuaXphdGlvbmFsVW5p
+  dDEYMBYGA1UEAxMPRm9ydC1GdW5zdG9uIENBMRAwDgYDVQQpEwdFYXN5UlNBMSEw
+  HwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW4wHhcNMTYwOTE1MTYzMTE4
+  WhcNMjYwOTEzMTYzMTE4WjCBtjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRUw
+  EwYDVQQHEwxTYW5GcmFuY2lzY28xFTATBgNVBAoTDEZvcnQtRnVuc3RvbjEdMBsG
+  A1UECxMUTXlPcmdhbml6YXRpb25hbFVuaXQxGDAWBgNVBAMTD0ZvcnQtRnVuc3Rv
+  biBDQTEQMA4GA1UEKRMHRWFzeVJTQTEhMB8GCSqGSIb3DQEJARYSbWVAbXlob3N0
+  Lm15ZG9tYWluMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqysSGaIL
+  FXD1EXbQ0lii8GjGD5uHxBAtYj3NW0k078gBI+q2BDNI8giGY1QRLkca68KXkQyW
+  9EKVX8OYMlh2cqfuAe+AoOHbzYkl/7a6+iH4H08U8XGRRKJCMGjlh5DIT2MCXoD1
+  CcuJq+xFj/A2izPPN/xPWEGv/Q8IereDLEGAWXsvRdWWYkXfq3lCmIDCS0j2JwAb
+  JOzNvPhI+owFFSg6HrtZeFwyHz9xz+qXp3XeNuz0nlG4h0BfdXk2X9L1muX3P2jl
+  gYOUcLAYrCmeg/+a2vabSpNcoffhuAWNNrZ7jEsV3jE0r3wwO5MluSiLm/HAl96a
+  8P/n9qlXwGvULQIDAQABo4IBHzCCARswHQYDVR0OBBYEFL6WWMAN9gQGhbXON8t5
+  0d2g5L7mMIHrBgNVHSMEgeMwgeCAFL6WWMAN9gQGhbXON8t50d2g5L7moYG8pIG5
+  MIG2MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFTATBgNVBAcTDFNhbkZyYW5j
+  aXNjbzEVMBMGA1UEChMMRm9ydC1GdW5zdG9uMR0wGwYDVQQLExRNeU9yZ2FuaXph
+  dGlvbmFsVW5pdDEYMBYGA1UEAxMPRm9ydC1GdW5zdG9uIENBMRAwDgYDVQQpEwdF
+  YXN5UlNBMSEwHwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW6CCQCOGvHm
+  1bfXOTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBU2lSKT/F9aE6f
+  SlLdR8EYjT0r3x3sh7toRunt5YeoB+W+jJnUwd3BHE5fw5MlL745G7VCA0D50gOs
+  YQNfjX36FjuBoUrAODSzZ1sUVr/m8RRVFDgrUBA/v+6V9z7rjVP1A0+pRpx/AEKT
+  9WqsRyBiiZqXHcAnblET7esHYLVENIiGZ1F3Or+P8zfXXovmKSfUMBGNq12zLD6h
+  9tBBhfB4Rvg5GNwCqk9Q6Oz8Bl3LOwUiGVI6Nli+1IOBsoWH0PRnVtjn/W8N2Hn/
+  egHtOhWru9Ld6LBGqNKElyEfwGeX0e+XvP3/Ew5KKG8iNctScDYErTjzHvt1h4vH
+  1yPIZl9h
+  -----END CERTIFICATE-----
+openvpn_cert: |
+  Certificate:
+      Data:
+          Version: 3 (0x2)
+          Serial Number: 1 (0x1)
+      Signature Algorithm: sha256WithRSAEncryption
+          Issuer: C=US, ST=CA, L=SanFrancisco, O=Fort-Funston, OU=MyOrganizationalUnit, CN=Fort-Funston CA/name=EasyRSA/emailAddress=me@myhost.mydomain
+          Validity
+              Not Before: Sep 15 16:31:36 2016 GMT
+              Not After : Sep 13 16:31:36 2026 GMT
+          Subject: C=US, ST=CA, L=SanFrancisco, O=Fort-Funston, OU=MyOrganizationalUnit, CN=server/name=EasyRSA/emailAddress=me@myhost.mydomain
+          Subject Public Key Info:
+              Public Key Algorithm: rsaEncryption
+                  Public-Key: (2048 bit)
+                  Modulus:
+                      00:b6:0c:47:db:34:51:75:38:8b:a3:52:13:b4:2b:
+                      ab:10:46:b9:02:66:e7:d8:ec:a5:47:3b:3b:be:76:
+                      e4:27:89:08:b8:0c:9f:34:f0:aa:f0:40:bc:69:2f:
+                      5d:d5:78:de:eb:26:37:20:68:9a:ec:1c:9c:d3:d9:
+                      b5:83:e2:c4:60:35:a4:83:d6:f1:ff:9a:d9:0c:d0:
+                      58:f6:5b:70:80:64:96:e0:ee:a6:1a:fa:9c:d7:c0:
+                      86:27:9a:8a:46:4d:ed:bc:08:11:a7:78:85:e1:c5:
+                      a8:a4:be:d9:64:3f:2a:92:41:c3:98:4e:df:46:fc:
+                      83:a4:a7:15:69:cc:ba:20:30:ec:f9:d0:10:67:5e:
+                      fa:b6:a2:c7:e9:73:7f:bd:1c:7b:8d:4e:8a:b8:4a:
+                      77:bf:ee:e4:aa:82:fc:b9:bb:80:ba:0c:f5:66:ca:
+                      34:22:ab:16:30:5e:d3:31:91:3f:09:59:37:73:d3:
+                      6f:37:14:3b:74:64:a7:c7:1e:6a:03:c0:ab:a1:f6:
+                      1e:55:e9:cb:1e:06:e4:2b:87:b8:a9:6f:b2:b3:2d:
+                      27:64:b4:05:70:a7:12:4d:6c:36:c4:0a:4e:ff:f9:
+                      e0:43:43:ed:c6:ec:2b:53:08:dd:e1:85:d3:7d:ce:
+                      7c:50:1f:3a:11:5e:0b:c7:0f:00:f0:cc:fe:d3:e9:
+                      ad:e3
+                  Exponent: 65537 (0x10001)
+          X509v3 extensions:
+              X509v3 Basic Constraints:
+                  CA:FALSE
+              Netscape Cert Type:
+                  SSL Server
+              Netscape Comment:
+                  Easy-RSA Generated Server Certificate
+              X509v3 Subject Key Identifier:
+                  A3:08:AF:53:83:1E:F0:DF:BF:25:92:6D:BA:D2:F1:76:ED:09:6F:59
+              X509v3 Authority Key Identifier:
+                  keyid:BE:96:58:C0:0D:F6:04:06:85:B5:CE:37:CB:79:D1:DD:A0:E4:BE:E6
+                  DirName:/C=US/ST=CA/L=SanFrancisco/O=Fort-Funston/OU=MyOrganizationalUnit/CN=Fort-Funston CA/name=EasyRSA/emailAddress=me@myhost.mydomain
+                  serial:8E:1A:F1:E6:D5:B7:D7:39
+
+              X509v3 Extended Key Usage:
+                  TLS Web Server Authentication
+              X509v3 Key Usage:
+                  Digital Signature, Key Encipherment
+              X509v3 Subject Alternative Name:
+                  DNS:server
+      Signature Algorithm: sha256WithRSAEncryption
+           a7:1b:e9:dc:b1:1c:39:74:9f:bf:b1:56:f1:9f:cc:b6:8b:05:
+           f9:04:94:72:33:75:e8:2e:ee:2f:c3:e6:87:e2:79:91:b7:e6:
+           40:92:f9:e0:ed:ea:52:ef:c7:a4:f2:38:df:63:13:5a:b2:c5:
+           ea:87:bd:f5:8a:98:99:2b:b2:77:46:79:ea:e9:9f:d2:9d:f2:
+           56:11:eb:71:ea:4c:62:d8:88:0a:38:d3:a0:46:00:0e:35:4b:
+           45:c9:a4:69:06:59:0d:f6:40:d0:e0:91:e3:d2:de:7b:06:87:
+           bd:9d:b0:08:c6:c2:b1:8f:3e:96:46:07:57:e8:7b:4f:ab:50:
+           ad:c2:b9:a2:8d:81:6b:5f:ca:d3:7e:4a:1d:b6:25:75:f8:2e:
+           55:a8:3e:8a:e2:a1:d9:08:8d:0c:3f:8c:8a:91:dc:3e:56:80:
+           ec:55:76:50:04:e4:dd:31:c4:29:a7:2f:0a:d4:80:74:fb:db:
+           d0:0b:ae:56:c9:a7:01:67:b5:ef:30:62:49:a9:1a:f8:4d:5b:
+           1e:3f:4a:5c:b6:08:08:27:57:00:31:ab:b8:91:62:e0:89:ca:
+           3d:af:66:a0:4a:17:91:8b:51:8a:65:b7:c3:a6:d2:11:eb:10:
+           76:9f:e4:6c:ab:7a:f0:c0:fd:5c:26:ed:79:9c:72:d7:35:c3:
+           25:7c:fc:d0
+  -----BEGIN CERTIFICATE-----
+  MIIFfDCCBGSgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBtjELMAkGA1UEBhMCVVMx
+  CzAJBgNVBAgTAkNBMRUwEwYDVQQHEwxTYW5GcmFuY2lzY28xFTATBgNVBAoTDEZv
+  cnQtRnVuc3RvbjEdMBsGA1UECxMUTXlPcmdhbml6YXRpb25hbFVuaXQxGDAWBgNV
+  BAMTD0ZvcnQtRnVuc3RvbiBDQTEQMA4GA1UEKRMHRWFzeVJTQTEhMB8GCSqGSIb3
+  DQEJARYSbWVAbXlob3N0Lm15ZG9tYWluMB4XDTE2MDkxNTE2MzEzNloXDTI2MDkx
+  MzE2MzEzNlowga0xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEVMBMGA1UEBxMM
+  U2FuRnJhbmNpc2NvMRUwEwYDVQQKEwxGb3J0LUZ1bnN0b24xHTAbBgNVBAsTFE15
+  T3JnYW5pemF0aW9uYWxVbml0MQ8wDQYDVQQDEwZzZXJ2ZXIxEDAOBgNVBCkTB0Vh
+  c3lSU0ExITAfBgkqhkiG9w0BCQEWEm1lQG15aG9zdC5teWRvbWFpbjCCASIwDQYJ
+  KoZIhvcNAQEBBQADggEPADCCAQoCggEBALYMR9s0UXU4i6NSE7QrqxBGuQJm59js
+  pUc7O7525CeJCLgMnzTwqvBAvGkvXdV43usmNyBomuwcnNPZtYPixGA1pIPW8f+a
+  2QzQWPZbcIBkluDuphr6nNfAhieaikZN7bwIEad4heHFqKS+2WQ/KpJBw5hO30b8
+  g6SnFWnMuiAw7PnQEGde+raix+lzf70ce41OirhKd7/u5KqC/Lm7gLoM9WbKNCKr
+  FjBe0zGRPwlZN3PTbzcUO3Rkp8ceagPAq6H2HlXpyx4G5CuHuKlvsrMtJ2S0BXCn
+  Ek1sNsQKTv/54END7cbsK1MI3eGF033OfFAfOhFeC8cPAPDM/tPpreMCAwEAAaOC
+  AZowggGWMAkGA1UdEwQCMAAwEQYJYIZIAYb4QgEBBAQDAgZAMDQGCWCGSAGG+EIB
+  DQQnFiVFYXN5LVJTQSBHZW5lcmF0ZWQgU2VydmVyIENlcnRpZmljYXRlMB0GA1Ud
+  DgQWBBSjCK9Tgx7w378lkm260vF27QlvWTCB6wYDVR0jBIHjMIHggBS+lljADfYE
+  BoW1zjfLedHdoOS+5qGBvKSBuTCBtjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNB
+  MRUwEwYDVQQHEwxTYW5GcmFuY2lzY28xFTATBgNVBAoTDEZvcnQtRnVuc3RvbjEd
+  MBsGA1UECxMUTXlPcmdhbml6YXRpb25hbFVuaXQxGDAWBgNVBAMTD0ZvcnQtRnVu
+  c3RvbiBDQTEQMA4GA1UEKRMHRWFzeVJTQTEhMB8GCSqGSIb3DQEJARYSbWVAbXlo
+  b3N0Lm15ZG9tYWluggkAjhrx5tW31zkwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYD
+  VR0PBAQDAgWgMBEGA1UdEQQKMAiCBnNlcnZlcjANBgkqhkiG9w0BAQsFAAOCAQEA
+  pxvp3LEcOXSfv7FW8Z/MtosF+QSUcjN16C7uL8Pmh+J5kbfmQJL54O3qUu/HpPI4
+  32MTWrLF6oe99YqYmSuyd0Z56umf0p3yVhHrcepMYtiICjjToEYADjVLRcmkaQZZ
+  DfZA0OCR49LeewaHvZ2wCMbCsY8+lkYHV+h7T6tQrcK5oo2Ba1/K035KHbYldfgu
+  Vag+iuKh2QiNDD+MipHcPlaA7FV2UATk3THEKacvCtSAdPvb0AuuVsmnAWe17zBi
+  Saka+E1bHj9KXLYICCdXADGruJFi4InKPa9moEoXkYtRimW3w6bSEesQdp/kbKt6
+  8MD9XCbteZxy1zXDJXz80A==
+  -----END CERTIFICATE-----
+openvpn_key: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC2DEfbNFF1OIuj
+  UhO0K6sQRrkCZufY7KVHOzu+duQniQi4DJ808KrwQLxpL13VeN7rJjcgaJrsHJzT
+  2bWD4sRgNaSD1vH/mtkM0Fj2W3CAZJbg7qYa+pzXwIYnmopGTe28CBGneIXhxaik
+  vtlkPyqSQcOYTt9G/IOkpxVpzLogMOz50BBnXvq2osfpc3+9HHuNToq4Sne/7uSq
+  gvy5u4C6DPVmyjQiqxYwXtMxkT8JWTdz0283FDt0ZKfHHmoDwKuh9h5V6cseBuQr
+  h7ipb7KzLSdktAVwpxJNbDbECk7/+eBDQ+3G7CtTCN3hhdN9znxQHzoRXgvHDwDw
+  zP7T6a3jAgMBAAECggEAErx21MewrojQTlHPN1bbN0SgG/AtYnUQmaEuB+9CkhMX
+  c6HQ7OjsHuf6vDSkyqizAK6hM9OwRia3uVIJzXYUUfaTZQJFS9JLDnePAGPu0zgH
+  E0VckSBD7iyhYggUvSGeGyEVeA/+b3shXTtLMncR0ZW1JMLRVgP9JIARwx7P9SoH
+  O2yR7P8bHJ7hsz2D1JJaHmBDDvfqvHiZLDbZL+H0XCfKKoUub2JyoJ6SZTB0y/1e
+  3/OTppCbsSbSS57gh5lOuDPb96Giz5EUjS1KOY0sToHxEi8zVCuxcKntm164285C
+  3w7oyLf0Hjio3RJJBFGwO1yNN/xi5T9stQRGd4VomQKBgQDvtmb+AoW4zh2bnzwF
+  19fMD5d32YohrOfa+k03OaVuoPfIVTWSuigi9dx6XF7zybyX5xECkUTj9c61bD89
+  HnbGxVvmva5hlfDi2F8FgI+Ty4dYYoi/19dgY8q5WmJezACj5sZklETbyhi6dUwI
+  7SUHSgWrRhfrQuXSzDpg2De4JQKBgQDCatopX2HP3eSw70VJ6xs2p94cp00oLFSD
+  +7zfZSvik0n+8Vgr4Y0ox3aBOZctIk4QQtiHXKmkxywdJn0Yr6C4gxW2kfwWjm2s
+  rXUpd+srtR8WeJ0AKjZgG62f+j+YDb/S1kFYyFqwC59LBN8KMOpC/54vZSeUGaZR
+  AYD887ELZwKBgQDHCC0ltNRw6Hq+7wy4UUn1PfDm6zH82gK819zrAKsyWubBaLaN
+  uJGAzaEd27pfMt6rRYjjF9kaacsS6ejsB3JZgh7XTCERF50lzL/A4sjTz0b2hQHE
+  QCOs/c6h7cEFst7JN+D8O/ucfoXfs2rJcpWvIq/oUM+lYCtQxo+mP4CsHQKBgAg8
+  LnGCMMp1Q7Ka7/xpkQWHpsjf7Uy+U/YjO6TazDkUtBWwc2OocipACK0Am3617UiT
+  DEjvi+AG779sWfApwE0QgGLzXBI4hjzCPCw9gCCh02dIRJ41K4h2o6wbFYaDTpTH
+  rozsL6s1UtICqs/rsoCUA0dOqZaEX58eyS/twpoRAoGBANAyHdFF6p62O+Z5NaAB
+  u9q2AD/PJ2q2JdTKBETAcRsbHj9k2Yf70mxqhhj+5IvQdYK5iToUTAX33E6TE+l9
+  Md+YHQCuUOIu4hy/6OV7C37HS13Z7PQWh5K95jDY8lSi8xp6rjiYjEBVontmjzRz
+  NlW7PmXJUTwVOyV0sMdaQvaF
+  -----END PRIVATE KEY-----
+openvpn_ta: |
+  -----BEGIN OpenVPN Static key V1-----
+  966964dfc26285f9c8835d5de5ecba13
+  68cc1efa920ffcb298e20002cea0a504
+  7250463aca657ae9667bc7a28dc7f88f
+  e8fa55900142be6a840bc710909f6612
+  04bbff3f5c8bd9f68d26bb849885722a
+  703a4dc70e1ef55349d29e88f4d374e9
+  a68d6d47f8828b2c35b3e84aba113e9e
+  0915cd243c05cba9cd3ce36518071863
+  1ef8000b623c5e851d8603787c09abdb
+  9055cad71716f2e1ca107ad01d917c52
+  1cc6117c411873e964123cc4e141618b
+  4bb5ed8b31b3669fe52f9ca6986104fd
+  e7ac0b02ca60391f758c09f0e088592d
+  a994f7de00b009f0c580c05956d375e5
+  5423378b72653dbabf976f232a4a4ab0
+  4325682423082ae3a2efd7a72ce469b6
+  -----END OpenVPN Static key V1-----
+openvpn_dh: |
+  -----BEGIN DH PARAMETERS-----
+  MIIBCAKCAQEAr+hqDd6Nll8Szjefjtcrv3K8AKvDMrhvJAcRCElFYJhIjMI7CRL/
+  LyNRno24swbRjFoHoS4ASGLYE/Uf4edLjJl2heao8JgDQCFsJ+utEM3k/1nTAYwk
+  rDbmmm0LOsIbcjvGarh7VXnbU8WE5UdhyepDakrl+klaR+Leccs92S0kf7Zc4bCw
+  8vDdZPvcNWq3EVDfnjelvFt0V4I3j7H/zSImKQmVl/0uxQrmU+xrp7XBwGmn+2FI
+  kDKAzV19ldn9Jcv0EXEnahGdcgVTGiKXGSYIEoRLpnHjTa9ZkSUDXBKaUT0r9D+d
+  27edhgtreE+eRX1BO1AMheeHTOdFcwog4wIBAg==
+  -----END DH PARAMETERS-----
