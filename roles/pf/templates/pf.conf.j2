@@ -1,9 +1,6 @@
 {{ ansible_managed | comment }}
 ext_if="{{ ext_if }}"
 
-martians = "{ 127.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8,
-              169.254.0.0/16, 192.0.2.0/24, 0.0.0.0/8, 240.0.0.0/4 }"
-
 set block-policy return
 set skip on lo0
 
@@ -12,12 +9,6 @@ block in all
 block return
 
 antispoof log for $ext_if
-
-{% if env == 'production' %}
-# Block RFC 1918 addresses
-block drop in log (all) quick on $ext_if from $martians to any
-block drop out log (all) quick on $ext_if from any to $martians
-{% endif %}
 
 pass in on $ext_if proto icmp all
 pass in on $ext_if proto icmp6 all
