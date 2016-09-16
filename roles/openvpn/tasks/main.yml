@@ -101,10 +101,11 @@
     notify:
       - restart openvpn
 
-  - name: Set openvpn proto as global
-    set_fact:
-      openvpn_proto: "{{ openvpn_proto }}"
-
-  - name: Set openvpn port as global
-    set_fact:
-      openvpn_port: "{{ openvpn_port }}"
+  - name: Enable IPv4 Forwarding
+    become: yes
+    sysctl:
+      name: net.inet.ip.forwarding
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
