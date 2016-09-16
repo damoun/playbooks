@@ -13,7 +13,7 @@ dh {{ openvpn_configdir }}/keys/server.dh
 tls-auth {{ openvpn_configdir }}/keys/ta.key 0
 tls-server
 
-server {{ openvpn_server }}
+server {{ openvpn_subnet }} 255.255.255.0
 
 keepalive {{ openvpn_keepalive }}
 
