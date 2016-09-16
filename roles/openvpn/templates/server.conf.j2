@@ -4,7 +4,7 @@ port {{ openvpn_port }}
 proto {{ openvpn_proto }}
 dev {{ openvpn_dev }}
 
-cipher {{ openvpn_cipher }}
+{% if openvpn_cipher %}cipher {{ openvpn_cipher }}{% endif %}
 ca {{ openvpn_configdir }}/keys/ca.crt
 cert {{ openvpn_configdir }}/keys/server.crt
 key {{ openvpn_configdir }}/keys/server.key

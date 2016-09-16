@@ -7,7 +7,7 @@
   openvpn_subnet: 10.8.0.0
   openvpn_max_clients: 10
   openvpn_keepalive: "10 120"
-  openvpn_cipher: AES-256-CBC
+  openvpn_cipher:
   openvpn_status: openvpn-status.log
   openvpn_verb: 5
   openvpn_user: _openvpn
