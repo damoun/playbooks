@@ -6,3 +6,4 @@
     - "host_vars/{{ ansible_hostname }}.yml"
   roles:
     - openvpn
+    - pf

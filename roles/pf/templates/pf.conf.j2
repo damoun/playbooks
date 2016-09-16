@@ -31,3 +31,10 @@ pass out on $ext_if proto tcp to any port smtp
 
 # HTTP access
 pass out on $ext_if proto tcp to any port {http, https}
+
+{% if inventory_hostname in groups['vpnservers'] %}
+# OpenVPN access
+pass in on $ext_if proto {{ openvpn_proto }} from any to any port {{ openvpn_port }}
+pass out on $ext_if from {{ openvpn_subnet }}/24 to any nat-to ({{ ansible_default_ipv4.device }})
+pass in on {{ openvpn_dev }}0 from any to any
+{% endif %}
