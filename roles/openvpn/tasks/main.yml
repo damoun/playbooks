@@ -101,8 +101,10 @@
     notify:
       - restart openvpn
 
-  - set_fact:
+  - name: Set openvpn proto as global
+    set_fact:
       openvpn_proto: "{{ openvpn_proto }}"
 
-  - set_fact:
+  - name: Set openvpn port as global
+    set_fact:
       openvpn_port: "{{ openvpn_port }}"
