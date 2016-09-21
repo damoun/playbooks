@@ -9,7 +9,7 @@
     - doas
     - openntpd
     - aliases
-    - pf
+#    - pf
 
 - include: dnsservers.yml
 - include: smtpservers.yml
