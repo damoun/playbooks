@@ -43,4 +43,18 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  if ENV['VAGRANT_MAIL01'] == '1'
+    config.vm.define "mail01" do |mail01|
+      mail01.vm.hostname = "mail01"
+      mail01.vm.box = "trombik/ansible-openbsd-6.0-amd64"
+      #mail01.ssh.sudo_command = "doas %c"
+      mail01.vm.network "forwarded_port", guest: 22, host: 2204
+      mail01.vm.network "forwarded_port", guest: 25, host: 1025
+      mail01.vm.network "forwarded_port", guest: 143, host: 1143
+      mail01.vm.network "forwarded_port", guest: 587, host: 1587
+      mail01.vm.provision "shell", inline: $openbsd_install_python
+      mail01.ssh.insert_key = false
+    end
+  end
+
 end

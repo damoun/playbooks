@@ -1,0 +1,8 @@
+---
+  smtpd_pkis:
+    - name: "smtp-in01.{{ root_domain }}"
+      certificate: "{{ smtp_in01.certificate }}"
+      key: "{{ smtp_in01.key }}"
+      dh: "{{ smtp_in01.dh }}"
+  smtpd_mda:
+    program: "/usr/local/libexec/dovecot/deliver -f %{sender} -a %{rcpt} -d %{dest:lowercase|strip}"
