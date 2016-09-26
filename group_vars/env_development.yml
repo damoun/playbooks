@@ -50,11 +50,6 @@ mail01_pkis:
       tiAcKiDP3KIMQQIgEWyECjH6J+RCbtFvhKNbgFE6bb3aYcahQgk1SQHVqicCIELQ
       hclOf0IgiIQFCApmhSgmAdCZOioyjxsCdwefaVg4
       -----END RSA PRIVATE KEY-----
-    dh: |
-      -----BEGIN DH PARAMETERS-----
-      MEYCQQDWZu9w5p4xrnBRHi8mZ/nYE4OtwvnSMZd0QC+b/tnbZTSIZCUXy89CfDtw
-      cx6lx3gR2WeLh6VGaeDf/vJzrVQLAgEC
-      -----END DH PARAMETERS-----
 smtpd_domains:
   - "{{ root_domain }}"
 openvpn_ca: |
