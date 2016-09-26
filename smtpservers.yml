@@ -6,4 +6,5 @@
     - "host_vars/{{ ansible_hostname }}.yml"
   roles:
     - opensmtpd
+    - ssl
     - pf

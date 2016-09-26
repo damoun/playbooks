@@ -1,0 +1,36 @@
+---
+  - name: Install PKI Certificate
+    become: yes
+    copy:
+      dest: "/etc/ssl/{{ item.name }}.crt"
+      content: "{{ item.certificate }}"
+      mode: 0640
+      owner: root
+      group: wheel
+      validate: openssl x509 -in %s -text -noout
+    with_items: "{{ pkis | default([]) }}"
+    when: item.certificate is defined
+
+  - name: Install PKI Key
+    become: yes
+    copy:
+      dest: "/etc/ssl/private/{{ item.name }}.key"
+      content: "{{ item.key }}"
+      mode: 0640
+      owner: root
+      group: wheel
+      validate: openssl rsa -in %s -check -text -noout
+    with_items: "{{ pkis | default([]) }}"
+    when: item.key is defined
+
+  - name: Install PKI DH
+    become: yes
+    copy:
+      dest: "/etc/ssl/{{ item.name }}.dh"
+      content: "{{ item.dh }}"
+      mode: 0640
+      owner: root
+      group: wheel
+      validate: openssl dhparam -in %s -check -text -noout
+    with_items: "{{ pkis | default([]) }}"
+    when: item.dh is defined

@@ -24,7 +24,8 @@ nsd_zones:
         ip: 192.168.57.2
       - name: ns02
         ip: 192.168.57.3
-smtp_in01:
+mail01_pkis:
+  - name: smtp-in01.{{ root_domain }}
     certificate: |
       -----BEGIN CERTIFICATE-----
       MIIB5TCCAY+gAwIBAgIJANYY4yqyCuKWMA0GCSqGSIb3DQEBCwUAME4xCzAJBgNV
