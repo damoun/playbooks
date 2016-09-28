@@ -11,6 +11,16 @@
     notify:
      - restart smtpd
 
+  - name: Create mail user
+    become: yes
+    user:
+      name: "{{ item.name }}"
+      append: yes
+      system: yes
+      shell: "{{ nologin_shell }}"
+    when: item.mail is defined and item.mail
+    with_items: "{{ users }}"
+
   - name: Enable OpenSMTPD on boot and start it
     become: yes
     service:
