@@ -28,6 +28,9 @@ pass in on $ext_if proto {tcp, udp} from any to any port domain
 
 # SMTP access
 pass out on $ext_if proto tcp to any port smtp
+{% if inventory_hostname in groups['smtpservers'] %}
+pass in on $ext_if proto tcp from any to any port smtp
+{% endif %}
 
 # HTTP access
 pass out on $ext_if proto tcp to any port {http, https}
