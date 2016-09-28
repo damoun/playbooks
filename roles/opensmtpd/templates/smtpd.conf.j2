@@ -1,8 +1,10 @@
 {{ ansible_managed | comment }}
-{% if smtpd_pkis is defined %}
-{% for pki in smtpd_pkis %}
-pki {{ pki.name }} certificate "/etc/ssl/{{ pki.name }}.crt"
-pki {{ pki.name }} key "/etc/ssl/private/{{ pki.name }}.key"
+{% if smtpd_listens is defined %}
+{% for listen in smtpd_listens %}
+{% if listen.pki is defined %}
+pki {{ listen.hostname }} certificate "/etc/ssl/{{ listen.pki }}.crt"
+pki {{ listen.hostname }} key "/etc/ssl/private/{{ listen.pki }}.key"
+{% endif %}
 {% endfor %}
 {% endif %}
 
@@ -10,25 +12,20 @@ listen on lo0
 {% if smtpd_listens is defined %}
 {% for listen in smtpd_listens %}
 listen on {{ listen.interface }}{% if listen.port is defined %} \
-  port {{ listen.port }}{% endif %}{% if listen.pki_name is defined %} \
-  {% if listen.tls_required is defined and listen.tls_required %}tls-require{% else %}tls{% endif %} {{ listen.pki_name }}{% endif %}{% if listen.hostname is defined %} \
-  hostname {{ listen.hostname }}{% endif %}{% if listen.auth_table is defined %} \
-  auth <{{ listen.auth_table }}>{% endif %}
+  port {{ listen.port }}{% endif %}{% if listen.pki is defined %} \
+  {% if listen.tls_required is defined and listen.tls_required %}tls-require{% else %}tls{% endif %} pki {{ listen.pki }}{% endif %}{% if listen.hostname is defined %} \
+  hostname {{ listen.hostname }}{% endif %}{% if listen.auth is defined %} \
+  auth{% endif %}
 {% endfor %}
+
 {% endif %}
 
 table aliases file:/etc/mail/aliases
-{% if smtpd_domains is defined %}
-table domains {{"{"}} {{ smtpd_domains | join(", ") }} {{"}"}}
-{% endif %}
 
-{% if smtpd_domains is defined %}
-accept from any for domain <domains> \
-  {% if smtpd_mda is defined %}alias <aliases> deliver to mda "{{ smtpd_mda.program }}"{% endif %}
-  {% if smtpd_mbox is defined %}alias <aliases> deliver to mbox{% endif %}
-  {% if smtpd_maildir is defined %}alias <aliases> deliver to maildir{% if smtpd_maildir.path is defined %} {{ smtpd_maildir.path }}{% endif %}{% endif %}
+accept for local alias <aliases> \
+  {% if smtpd_mda is defined %}deliver to mda "{{ smtpd_mda.program }}"{% endif %}
+  {% if smtpd_mbox is defined %}deliver to mbox{% endif %}
+  {% if smtpd_maildir is defined %}deliver to maildir{% if smtpd_maildir.path is defined %} {{ smtpd_maildir.path }}{% endif %}{% endif %}
   {% if smtpd_relay is defined %}relay{% if smtpd_relay.backup is defined %} backup {{ smtpd_relay.backup }}{% endif %}{% endif %}
 
-{% endif %}
-accept for local alias <aliases> deliver to mbox
 accept from local for any relay

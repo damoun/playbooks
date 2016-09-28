@@ -5,6 +5,9 @@ users:
   - name: test
     ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmxjELSZki7QgC9dK1s9BoPo6DZR/ENQcNi7PgH75lFD7gJphn9Wz1hkyHtHv/poJYpLZJhknLUazkFNJQzIAINAJdYsynpQ9rlipUrkKG3A0a8W8GgDShemooIZJMHoM49GRkWT0XfediJKQ2KD/9b1ipnstkjjxFvvbYny7qph0PY/zYh9yVtK8ZTse+oTBUXaJRyBI7PrTK+t0BzsHU+6zxhHcH8P+EPSaBqTZ04o5a3pO78sWkUhasHfmdvCspnawS7iN0ze5TV5LEfX1uzcITNHEk+yj68+tMDCvaYZ1rj0+EURWtabCzNjQpjN3RD5Iy4POEo1zQDLExahVZ
     admin: yes
+    mail: yes
+  - name: foobar
+    mail: yes
 nsd_zones:
   - origin: "{{ root_domain }}"
     secret: OHoeAvtY0YiV7++18KzVQYh0OWhXkr+y0PK6l77fsDI=
@@ -50,8 +53,11 @@ mail01_pkis:
       tiAcKiDP3KIMQQIgEWyECjH6J+RCbtFvhKNbgFE6bb3aYcahQgk1SQHVqicCIELQ
       hclOf0IgiIQFCApmhSgmAdCZOioyjxsCdwefaVg4
       -----END RSA PRIVATE KEY-----
-smtpd_domains:
-  - "{{ root_domain }}"
+mail01_smtpd_listens:
+  - interface: em0
+    pki: "smtp-in01.{{ root_domain }}"
+    port: 25
+    hostname: "smtp-in01.{{ root_domain }}"
 openvpn_ca: |
   -----BEGIN CERTIFICATE-----
   MIIFEjCCA/qgAwIBAgIJAI4a8ebVt9c5MA0GCSqGSIb3DQEBCwUAMIG2MQswCQYD
