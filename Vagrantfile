@@ -57,4 +57,17 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  if ENV['VAGRANT_WEB01'] == '1'
+    config.vm.define "web01" do |web01|
+      web01.vm.hostname = "web01"
+      web01.vm.box = "trombik/ansible-openbsd-6.0-amd64"
+      #web01.ssh.sudo_command = "doas %c"
+      web01.vm.network "forwarded_port", guest: 22, host: 2205
+      web01.vm.network "forwarded_port", guest: 80, host: 8080
+      web01.vm.network "forwarded_port", guest: 443, host: 4443
+      web01.vm.provision "shell", inline: $openbsd_install_python
+      web01.ssh.insert_key = false
+    end
+  end
+
 end

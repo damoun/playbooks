@@ -9,6 +9,9 @@ vpn01 ansible_ssh_port=2203 ansible_ssh_host=127.0.0.1
 mail01 ansible_ssh_port=2204 ansible_ssh_host=127.0.0.1
 192.168.57.3 smtpd_listens='[{"interface": "em1", "hostname": "smtp-in02.{{ root_domain }}"}]' smtpd_relay='{"backup": "smtp-in02.{{ root_domain }}"}'
 
+[webmail]
+web01 ansible_ssh_port=2205 ansible_ssh_host=127.0.0.1
+
 [all:vars]
 env=development
 ansible_ssh_user=vagrant
