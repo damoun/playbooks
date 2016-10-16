@@ -15,6 +15,7 @@ server "{{ server.name }}" {
   # Strong Ciphers from Cipherli.st
   tls ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"
 
+  hsts { subdomains }
 {% endif %}
 
 {% for location in server.locations %}
