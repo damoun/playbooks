@@ -12,6 +12,9 @@ server "{{ server.name }}" {
 
   tls certificate "/etc/ssl/{{ server.name }}.crt"
   tls key "/etc/ssl/private/{{ server.name }}.key"
+  # Strong Ciphers from Cipherli.st
+  tls ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"
+
 {% endif %}
 
 {% for location in server.locations %}
