@@ -34,6 +34,18 @@ pass in on $ext_if proto tcp from any to any port smtp
 
 # HTTP access
 pass out on $ext_if proto tcp to any port {http, https}
+{% if inventory_hostname in groups['webmail'] %}
+pass in on $ext_if proto tcp from any to any port {http, https}
+
+# Sieve access
+pass out on $ext_if proto tcp to any port 4190
+
+# Submission access
+pass out on $ext_if proto tcp to any port submission
+
+# IMAP access
+pass out on $ext_if proto tcp to any port imap
+{% endif %}
 
 {% if inventory_hostname in groups['vpnservers'] %}
 # OpenVPN access
