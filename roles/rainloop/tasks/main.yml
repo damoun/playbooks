@@ -50,13 +50,14 @@
       owner: www
       group: www
 
-  - name: Fix rainloop directory chmod
+  - name: Fix rainloop permission
     become: yes
-    command: find /var/www/htdocs/rainloop -type d -exec chmod 755 {} \;
-
-  - name: Fix rainloop files chmod
-    become: yes
-    command: find /var/www/htdocs/rainloop -type f -exec chmod 644 {} \;
+    file:
+      path: /var/www/htdocs/rainloop
+      mode: u=rwX,g=rX,o=rX
+      recurse: yes
+      state: directory
+    with_items: "{{ rainloop_directory.stdout_lines }}"
 
   - name: Register php-fpm pool
     set_fact:
