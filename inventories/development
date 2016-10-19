@@ -12,6 +12,9 @@ mail01 ansible_ssh_port=2204 ansible_ssh_host=127.0.0.1
 [webmail]
 web01 ansible_ssh_port=2205 ansible_ssh_host=127.0.0.1
 
+[davservers]
+web01 ansible_ssh_port=2205 ansible_ssh_host=127.0.0.1
+
 [all:vars]
 env=development
 ansible_ssh_user=vagrant
