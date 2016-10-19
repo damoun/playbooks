@@ -21,7 +21,7 @@
   - name: Create rainloop www directory
     become: yes
     file:
-      dest: /var/www/htdocs/rainloop/
+      dest: /var/www/rainloop/
       owner: www
       group: www
       mode: 0755
@@ -46,18 +46,17 @@
       #src: http://repository.rainloop.net/v2/webmail/rainloop-community-latest.zip
       #remote_src: yes
       src: files/rainloop.zip
-      dest: /var/www/htdocs/rainloop
+      dest: /var/www/rainloop/
       owner: www
       group: www
 
   - name: Fix rainloop permission
     become: yes
     file:
-      path: /var/www/htdocs/rainloop
+      path: /var/www/rainloop/
       mode: u=rwX,g=rX,o=rX
       recurse: yes
       state: directory
-    with_items: "{{ rainloop_directory.stdout_lines }}"
 
   - name: Register php-fpm pool
     set_fact:
@@ -71,13 +70,15 @@
         locations:
           - path: /data*
             block: yes
+          - path: /rainloop/*.php*
+            block: yes
           - path: /rainloop*
             root:
-              directory: /htdocs/rainloop/rainloop
+              directory: /rainloop/rainloop
               strip: 1
           - path: /*
             root:
-              directory: /htdocs/rainloop/index.php
+              directory: /rainloop/index.php
             fastcgi:
               socket: /run/rainloop.sock
 
