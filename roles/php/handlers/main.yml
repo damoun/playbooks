@@ -1,6 +1,0 @@
----
-  - name: restart php-fpm
-    become: yes
-    service:
-      name: php56_fpm
-      state: restarted

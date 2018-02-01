@@ -12,7 +12,4 @@
 #    - pf
 
 - include: dnsservers.yml
-- include: smtpservers.yml
 - include: vpnservers.yml
-- include: webmail.yml
-- include: davservers.yml
