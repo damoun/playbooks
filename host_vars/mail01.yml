@@ -1,5 +1,0 @@
----
-  pkis: "{{ mail01_pkis }}"
-  smtpd_listens: "{{ mail01_smtpd_listens }}"
-  smtpd_mda:
-    program: "/usr/local/libexec/dovecot/deliver -f %{sender} -a %{rcpt} -d %{dest:lowercase|strip}"
