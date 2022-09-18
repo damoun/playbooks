@@ -1,6 +1,0 @@
----
-- name: restart nsd
-  become: yes
-  service:
-    name: nsd
-    state: restarted

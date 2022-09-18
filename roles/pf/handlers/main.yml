@@ -1,4 +1,0 @@
----
-- name: reload pf
-  become: yes
-  command: pfctl -f /etc/pf.conf

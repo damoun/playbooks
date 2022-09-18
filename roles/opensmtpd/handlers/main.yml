@@ -1,6 +1,0 @@
----
-- name: restart smtpd
-  become: yes
-  service:
-    name: smtpd
-    state: restarted

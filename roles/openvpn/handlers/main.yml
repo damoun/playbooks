@@ -1,4 +1,0 @@
----
-- name: restart openvpn
-  become: yes
-  command: "sh /etc/netstart {{ openvpn_dev }}0"

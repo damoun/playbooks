@@ -1,7 +1,0 @@
-language: python
-python: "2.7"
-install:
-  - pip install ansible ansible-lint
-script:
-  - ansible-playbook --syntax-check -i inventories/development site.yml
-  - ansible-lint site.yml
