@@ -8,8 +8,18 @@
 <h4 align="center">My playbooks and roles for my own lab.</h4>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/damoun/playbooks.svg"></a>
   <a href="https://github.com/damoun/playbooks/actions/workflows/lint.yml">
       <img src="https://github.com/damoun/playbooks/actions/workflows/lint.yml/badge.svg">
   </a>
 </p>
+
+<p align="center">
+  <a href="#getting-started">Getting Started</a>
+</p>
+
+# Getting Started
+
+```
+ansible-galaxy install -r requirements.yml
+ansible-playbook -i inventories site.yml
+```
