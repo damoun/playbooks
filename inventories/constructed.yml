@@ -1,0 +1,7 @@
+plugin: constructed
+strict: true
+
+groups:
+  k8s: inventory_hostname.startswith('k8s')
+  k8s_control_plane: inventory_hostname.startswith('k8s-cp')
+  k8s_node: inventory_hostname.startswith('k8s-w')
