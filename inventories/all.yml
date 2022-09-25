@@ -2,10 +2,8 @@
 offline:
   hosts:
 
-rpi:
-  children:
-    rpi_k8s:
-      hosts:
-        k8s-w1.home.damoun.cloud:
-        k8s-w2.home.damoun.cloud:
-        k8s-cp1.home.damoun.cloud:
+rpi_k8s:
+  hosts:
+    k8s-w1.home.damoun.cloud:
+    k8s-w2.home.damoun.cloud:
+    k8s-cp1.home.damoun.cloud:
