@@ -1,0 +1,16 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run ansible-lint
+        uses: ansible-community/ansible-lint-action@main
