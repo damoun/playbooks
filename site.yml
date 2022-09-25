@@ -1,2 +1,3 @@
 ---
-- ansible.builtin.import_playbook: "k8s.yml"
+- name: "Setup kubernetes clusters"
+  ansible.builtin.import_playbook: "k8s.yml"
