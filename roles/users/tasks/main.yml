@@ -1,0 +1,24 @@
+---
+- name: create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | default([]) }}"
+    state: present
+    shell: /bin/bash
+  with_items: "{{ users }}"
+
+- name: install ssh public keys for new users
+  ansible.builtin.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.pubkey }}"
+    state: present
+  with_items: "{{ users }}"
+
+- name: enable sudo for new users
+  community.general.sudoers:
+    name: "010_{{ item.name }}-nopasswd"
+    user: "{{ item.name }}"
+    nopassword: yes
+    commands: "ALL"
+  when: "item.sudo | default(false)"
+  with_items: "{{ users }}"
