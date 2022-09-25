@@ -1,0 +1,27 @@
+---
+- name: "setup raspberry pi kubernetes base"
+  hosts: "k8s:&rpi:!offline"
+  become: true
+  roles:
+    - name: "users"
+      tags: ["users", "user"]
+    - name: "rpi"
+      tags: ["raspberry", "pi", "rpi", "raspberry-pi"]
+    - name: "k3s"
+      tags: ["k3s"]
+  
+- name: "setup raspberry pi kubernetes control plane"
+  hosts: "k8s_control_plane:&rpi:!offline"
+  become: true
+  gather_facts: false
+  roles:
+    - name: "k3s/control_plane"
+      tags: [k3s-control-plane]
+
+- name: "setup raspberry pi kubernetes node"
+  hosts: "k8s_node:&rpi:!offline"
+  become: true
+  gather_facts: false
+  roles:
+    - name: "k3s/node"
+      tags: [k3s-node]
