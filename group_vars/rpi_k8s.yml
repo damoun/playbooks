@@ -1,0 +1,3 @@
+k3s_version: "v1.25.0+k3s1"
+enable_cgroup: true
+k8s_control_plane_ip: "{{ hostvars[groups['k8s_control_plane'][0]]['ansible_default_ipv4']['address'] | default(groups['k8s_control_plane'][0]) }}"

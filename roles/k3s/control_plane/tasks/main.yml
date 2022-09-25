@@ -1,0 +1,73 @@
+---
+- name: Copy service file
+  ansible.builtin.template:
+    src: "k3s.service.j2"
+    dest: "/etc/systemd/system/k3s.service"
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - reload systemd
+    - restart k3s
+
+- name: Enable & start service
+  ansible.builtin.service:
+    name: k3s
+    state: started
+    enabled: true
+
+- name: Wait for node-token
+  ansible.builtin.wait_for:
+    path: "/var/lib/rancher/k3s/server/node-token"
+
+- name: Read node-token
+  ansible.builtin.slurp:
+    path: "/var/lib/rancher/k3s/server/node-token"
+  register: node_token
+
+- name: Store node-token
+  ansible.builtin.set_fact:
+    token: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
+
+- name: Create kubectl symlink
+  ansible.builtin.file:
+    src: /usr/local/bin/k3s
+    dest: /usr/local/bin/kubectl
+    state: link
+
+- name: Create crictl symlink
+  ansible.builtin.file:
+    src: /usr/local/bin/k3s
+    dest: /usr/local/bin/crictl
+    state: link
+
+- name: Create kubeconfig symlink
+  ansible.builtin.file:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /root/.kube/config
+    state: link
+
+- name: Install python3-yaml package for ansible
+  ansible.builtin.package:
+    name: python3-yaml
+    state: present
+
+- name: Install apt-transport-https package for helm repository
+  ansible.builtin.package:
+    name: apt-transport-https
+    state: present
+
+- name: Add apt signing key for helm repository
+  ansible.builtin.apt_key:
+    url: "https://baltocdn.com/helm/signing.asc"
+    state: present
+
+- name: Add helm apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ [ansible_architecture] | map('extract', deb_architecture) | first }}] https://baltocdn.com/helm/stable/debian/ all main"
+    state: present
+
+- name: Install helm package
+  ansible.builtin.package:
+    name: helm
+    state: present

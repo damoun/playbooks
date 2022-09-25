@@ -1,0 +1,9 @@
+plugin: constructed
+strict: true
+
+groups:
+  home: "'home' in inventory_hostname"
+  k8s: inventory_hostname.startswith('k8s')
+  k8s_control_plane: inventory_hostname.startswith('k8s-cp')
+  k8s_node: inventory_hostname.startswith('k8s-w')
+  rpi: "group_names | select('search', 'rpi') | list | count > 0"

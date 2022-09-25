@@ -1,0 +1,5 @@
+---
+users:
+  - name: "damoun"
+    pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2QYZxkpNqJ7tswpUf3VatRL0QciEp6Anp7f3UrvIHo"
+    sudo: true

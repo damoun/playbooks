@@ -1,0 +1,26 @@
+---
+- name: Disable pi user
+  ansible.builtin.user:
+    name: "pi"
+    password: "*"
+    state: present
+
+- name: Remove ssh public keys for pi user
+  ansible.builtin.file:
+    path: "/home/pi/.ssh"
+    state: absent
+
+- name: Remove sudo for pi users
+  community.general.sudoers:
+    name: "010_pi-nopasswd"
+    user: "pi"
+    state: absent
+
+- name: Enable cgroup support
+  ansible.builtin.lineinfile:
+    path: /boot/cmdline.txt
+    regexp: '^((?!.*\bcgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory\b).*)$'
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    backrefs: true
+  notify: reboot
+  when: enable_cgroup

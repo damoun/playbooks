@@ -1,0 +1,17 @@
+---
+- name: Copy service file
+  ansible.builtin.template:
+    src: "k3s.service.j2"
+    dest: "/etc/systemd/system/k3s-node.service"
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - reload systemd
+    - restart k3s-node
+
+- name: Enable & start service
+  ansible.builtin.service:
+    name: k3s-node
+    state: started
+    enabled: true
