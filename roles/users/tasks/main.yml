@@ -8,7 +8,7 @@
   with_items: "{{ users }}"
 
 - name: Install ssh public keys for new users
-  ansible.builtin.authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ item.name }}"
     key: "{{ item.pubkey }}"
     state: present

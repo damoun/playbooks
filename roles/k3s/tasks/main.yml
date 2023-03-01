@@ -35,17 +35,17 @@
     - ansible_facts.userspace_bits == "32"
 
 - name: Install iSCSI driver
-  package:
+  ansible.builtin.package:
     name: open-iscsi
     state: present
 
 - name: Install NFS driver
-  package:
+  ansible.builtin.package:
     name: libnfs-utils
     state: present
 
 - name: Enable IPv4 forwarding
-  ansible.builtin.sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: "1"
     state: present
