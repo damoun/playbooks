@@ -34,6 +34,16 @@
     - ansible_facts.architecture is search("arm")
     - ansible_facts.userspace_bits == "32"
 
+- name: Install iSCSI driver
+  package:
+    name: open-iscsi
+    state: present
+
+- name: Install NFS driver
+  package:
+    name: libnfs-utils
+    state: present
+
 - name: Enable IPv4 forwarding
   ansible.builtin.sysctl:
     name: net.ipv4.ip_forward
