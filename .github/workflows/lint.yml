@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - name: Run ansible-lint
-        uses: ansible-actions/ansible-lint-action@v1.1.0
+        uses: ansible-actions/ansible-lint-action@f32438707106decdb067a067e4f026c0e94e3f16 # v1.1.0
